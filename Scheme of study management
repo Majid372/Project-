@@ -1,0 +1,48 @@
+class Course:
+    def __init__(self, course_code, course_name, credit_hours):
+        self.course_code = course_code
+        self.course_name = course_name
+        self.credit_hours = credit_hours
+
+class Semester:
+    def __init__(self, semester_name, courses=[]):
+        self.semester_name = semester_name
+        self.courses = courses
+
+    def add_course(self, course):
+        self.courses.append(course)
+
+    def remove_course(self, course):
+        self.courses.remove(course)
+
+    def get_total_credit_hours(self):
+        return sum(course.credit_hours for course in self.courses)
+
+class SchemeOfStudy:
+    def __init__(self, semesters=[]):
+        self.semesters = semesters
+
+    def add_semester(self, semester):
+        self.semesters.append(semester)
+
+    def remove_semester(self, semester):
+        self.semesters.remove(semester)
+
+    def get_total_credit_hours(self):
+        return sum(semester.get_total_credit_hours() for semester in self.semesters)
+
+    def __str__(self):
+        return f'Scheme of Study: {len(self.semesters)} semesters, {self.get_total_credit_hours()} credit hours'
+
+class Student:
+    def __init__(self, name, roll_no, scheme_of_study):
+        self.name = name
+        self.roll_no = roll_no
+        self.scheme_of_study = scheme_of_study
+
+    def get_scheme_of_study(self):
+        return self.scheme_of_study
+
+    def __str__(self):
+        return f'Student: {self.name}, Roll No: {self.roll_no}\n{self.scheme_of_study}'
+T
